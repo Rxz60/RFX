@@ -6,7 +6,7 @@
     <title>RFX</title>
     <style>
         :root {
-            --bg-dark: #120024; /* تم تغيير الخلفية إلى البنفسجي */
+            --bg-dark: #120024;
             --royal-black: #08000d;
             --card-bg: rgba(18, 2, 30, 0.85);
             --border-royal: #8000ff; 
@@ -16,7 +16,6 @@
             --deep-purple: #1f0038;
         }
 
-        /* 🛡️ حماية كاملة لمنع تحديد العناصر وسحبها */
         * { 
             box-sizing: border-box; 
             -webkit-user-select: none !important; 
@@ -36,7 +35,6 @@
             position: relative;
         }
 
-        /* الشريط العلوي الأسود */
         .top-black-bar {
             width: 100%;
             background-color: #000000;
@@ -77,7 +75,6 @@
 
         .main-content-wrapper { position: relative; z-index: 10; }
 
-        /* الزر الجانبي أعلى اليسار */
         .top-left-menu-btn {
             position: absolute;
             top: 55px;
@@ -113,7 +110,6 @@
             box-shadow: 0 0 8px var(--main-purple);
         }
 
-        /* 💃 أنيميشن رقص الصورة الرئيسية */
         @keyframes logoDance {
             0% { transform: translateY(0) rotate(0deg); }
             25% { transform: translateY(-10px) rotate(-8deg); }
@@ -124,7 +120,6 @@
 
         header { padding: 30px 0 10px; text-align: center; }
         
-        /* 🖼️ صورة البداية مع ستروك واضح وأنيميشن رقص */
         .logo-img-container {
             width: 130px; height: 130px; border-radius: 25px; 
             border: 3px solid var(--main-purple); 
@@ -137,7 +132,6 @@
         }
         .logo-img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 🏷️ عنوان RFX بدون حواف أو ستروك */
         .title-bar-no-border {
             background: transparent;
             border: none !important;
@@ -154,7 +148,6 @@
             letter-spacing: 3px; 
         }
 
-        /* 💃 أنيميشن رقص صور الهاكات */
         @keyframes danceAnim {
             0% { transform: translateY(0) rotate(0deg); }
             25% { transform: translateY(-6px) rotate(-5deg); }
@@ -163,7 +156,6 @@
             100% { transform: translateY(0) rotate(0deg); }
         }
 
-        /* 🖼️ صور الهاكات: مربعة بحجم متناسق وحواف دائرية */
         .dancing-hack-img {
             width: 85px;
             height: 85px;
@@ -197,7 +189,6 @@
             gap: 20px; 
         }
 
-        /* 📦 مربع الهاك: صُغير وملموم بحواف دائرية وستروك بنفسجي */
         .hack-card {
             background: var(--card-bg);
             border: 2px solid var(--main-purple);
@@ -251,7 +242,6 @@
         .discord-footer-btn:hover { background: var(--main-purple); color: #ffffff; box-shadow: 0 0 30px var(--main-purple); transform: translateY(-2px); }
         .discord-icon-img { width: 26px; height: 26px; object-fit: contain; }
 
-        /* 📱 القائمة الجانبية: خلفية سوداء تغطي الجهة اليسرى مع زر إغلاق X بنفسجي */
         .side-drawer-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.75);
@@ -287,7 +277,6 @@
             left: 0;
         }
 
-        /* ✖️ زر الإغلاق X باللون البنفسجي */
         .drawer-close-btn {
             align-self: flex-end;
             background: transparent;
@@ -314,7 +303,6 @@
             transform: rotate(90deg);
         }
 
-        /* 🔲 خيارات القائمة الجانبية مع ستروك وحواف دائرية */
         .drawer-item { 
             background: var(--deep-purple); 
             color: #ffffff; 
@@ -339,13 +327,11 @@
 </head>
 <body>
 
-<!-- الشريط العلوي الأسود باسم RFX -->
 <div class="top-black-bar">RFX</div>
 
 <div class="main-content-wrapper">
 
-    <!-- الزر الجانبي أعلى اليسار -->
-    <div class="top-left-menu-btn" onclick="toggleMenu()">
+    <div class="top-left-menu-btn" onclick="document.getElementById('side-drawer').classList.toggle('open')">
         <div class="menu-bars-icon">
             <span></span>
             <span></span>
@@ -354,12 +340,10 @@
     </div>
 
     <header>
-        <!-- صورة البداية مع ستروك وأنيميشن رقص -->
         <div class="logo-img-container">
             <img src="https://github.com/Rxz60/MRX/raw/refs/heads/main/BF59CE60-63E5-40F6-9618-CFD816F8AAB9.png" class="logo-img">
         </div>
         
-        <!-- نص RFX بدون حواف أو ستروك -->
         <div class="title-bar-no-border">
             <h1>RFX</h1>
         </div>
@@ -368,22 +352,22 @@
     <div class="container">
         
         <div id="main-menu-page" class="main-menu-grid">
-            <div class="menu-box-trigger" onclick="navigateToSubPage('page-ios')">
+            <div class="menu-box-trigger" onclick="document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-ios').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">
                 <h2>قائمة الآيفون (iOS)</h2>
                 <p>تحتوي على نسخ Delta TRX والمزيد من التحديثات...</p>
             </div>
-            <div class="menu-box-trigger" onclick="navigateToSubPage('page-android')">
+            <div class="menu-box-trigger" onclick="document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-android').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">
                 <h2>قائمة الأندرويد (Android)</h2>
                 <p>تحتوي على Delta, Arceus X, PunkX, Codex والمزيد...</p>
             </div>
-            <div class="menu-box-trigger" onclick="navigateToSubPage('page-pc')">
+            <div class="menu-box-trigger" onclick="document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-pc').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">
                 <h2>قائمة الكمبيوتر (PC)</h2>
                 <p>تحتوي على أدوات وبرامج المحاكاة المخصصة للويندوز...</p>
             </div>
         </div>
 
         <div id="page-ios" class="sub-page">
-            <button class="back-btn" onclick="returnToMainMenu()">← رجوع للرئيسية</button>
+            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع للرئيسية</button>
             <div class="section-title-purple">نسخ الآيفون المتوفرة</div>
             <div class="cards-grid">
                 <div class="hack-card">
@@ -398,7 +382,7 @@
         </div>
 
         <div id="page-android" class="sub-page">
-            <button class="back-btn" onclick="returnToMainMenu()">← رجوع للرئيسية</button>
+            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع للرئيسية</button>
             <div class="section-title-purple">نسخ الأندرويد المتوفرة</div>
             <div class="cards-grid">
                 <div class="hack-card">
@@ -437,7 +421,7 @@
         </div>
 
         <div id="page-pc" class="sub-page">
-            <button class="back-btn" onclick="returnToMainMenu()">← رجوع للرئيسية</button>
+            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع للرئيسية</button>
             <div class="section-title-purple">أدوات الكمبيوتر (PC)</div>
             <div class="cards-grid">
                 <div class="hack-card">
@@ -463,164 +447,93 @@
     </div>
 </div>
 
-<!-- 📱 القائمة الجانبية: سوداء بالكامل على اليسار مع زر X بنفسجي -->
-<div id="side-drawer" class="side-drawer-overlay" onclick="closeMenuOnOverlay(event)">
+<div id="side-drawer" class="side-drawer-overlay" onclick="if(event.target.id==='side-drawer') this.classList.remove('open');">
     <div class="side-drawer-container">
-        <!-- ✖️ زر الإغلاق X العائد للخلف -->
-        <button class="drawer-close-btn" onclick="toggleMenu()">✕</button>
+        <button class="drawer-close-btn" onclick="document.getElementById('side-drawer').classList.remove('open')">✕</button>
         
-        <div class="drawer-item active-home" onclick="returnToMainMenu(); toggleMenu();">الصفحة الرئيسية</div>
-        <div class="drawer-item" onclick="selectFromSideMenu('page-ios')">قائمة الايفون (iOS)</div>
-        <div class="drawer-item" onclick="selectFromSideMenu('page-android')">قائمة الاندرويد (Android)</div>
-        <div class="drawer-item" onclick="selectFromSideMenu('page-pc')">قائمة البي سي (PC)</div>
+        <div class="drawer-item active-home" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex'; document.getElementById('side-drawer').classList.remove('open');">الصفحة الرئيسية</div>
+        <div class="drawer-item" onclick="document.getElementById('side-drawer').classList.remove('open'); document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-ios').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">قائمة الايفون (iOS)</div>
+        <div class="drawer-item" onclick="document.getElementById('side-drawer').classList.remove('open'); document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-android').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">قائمة الاندرويد (Android)</div>
+        <div class="drawer-item" onclick="document.getElementById('side-drawer').classList.remove('open'); document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-pc').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">قائمة البي سي (PC)</div>
         <a href="https://discord.gg/rfx" target="_blank" class="drawer-item">ديسكورد RFX</a>
     </div>
 </div>
 
 <script>
-    // ⚔️ الحماية وتعطيل القائمة المنسدلة والسحب ⚔️
-    document.addEventListener('contextmenu', event => event.preventDefault());
-    document.addEventListener('dragstart', event => event.preventDefault());
-    document.addEventListener('drop', event => event.preventDefault());
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+    document.addEventListener('drop', e => e.preventDefault());
+    document.addEventListener('touchstart', e => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
 
-    document.addEventListener('touchstart', function(e) {
-        if (e.touches.length > 1) e.preventDefault();
-    }, { passive: false });
+    let trxAudioCtx, trxAudioBuf, trxAudioLocked = true;
+    const trxAudioUrl = 'https://github.com/Rxz60/MRX/raw/refs/heads/main/ScreenRecording_%D9%A0%D9%A7-%D9%A2%D9%A0-%D9%A2%D9%A0%D9%A2%D9%A6-%D9%A2%D9%A1-%D9%A1%D9%A7-%D9%A1%D9%A8_1.m4a';
 
-    // 🎵 الصوت المباشر 🎵
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    let audioContext;
-    let audioBuffer = null;
-    let isAudioLocked = true;
-
-    const audioUrl = 'https://github.com/Rxz60/MRX/raw/refs/heads/main/ScreenRecording_%D9%A0%D9%A7-%D9%A2%D9%A0-%D9%A2%D9%A0%D9%A2%D9%A6-%D9%A2%D9%A1-%D9%A1%D9%A7-%D9%A1%D9%A8_1.m4a';
-
-    function loadTrxSoundData() {
-        if (!audioContext) audioContext = new AudioCtx();
-        if (audioBuffer) return; 
-
-        fetch(audioUrl)
-            .then(response => response.arrayBuffer())
-            .then(data => audioContext.decodeAudioData(data))
-            .then(buffer => { audioBuffer = buffer; })
-            .catch(e => {});
-    }
-
-    function unlockAudioSystem() {
-        if (!audioContext) audioContext = new AudioCtx();
-        if (audioContext.state === 'suspended') audioContext.resume();
-        loadTrxSoundData();
-        isAudioLocked = false;
-        window.removeEventListener('click', unlockAudioSystem);
-        window.removeEventListener('touchstart', unlockAudioSystem);
-    }
-
-    function playTrxSoundInstant() {
-        if (audioContext && audioContext.state === 'suspended') audioContext.resume();
-        if (audioBuffer) {
-            const source = audioContext.createBufferSource();
-            source.buffer = audioBuffer;
-            source.connect(audioContext.destination);
-            source.start(0); 
-        } else {
-            const fallbackAudio = new Audio(audioUrl);
-            fallbackAudio.play().catch(e => {});
+    const initTrxAudio = () => {
+        if (!trxAudioCtx) trxAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (!trxAudioBuf) {
+            fetch(trxAudioUrl)
+                .then(r => r.arrayBuffer())
+                .then(d => trxAudioCtx.decodeAudioData(d))
+                .then(b => trxAudioBuf = b)
+                .catch(() => {});
         }
-    }
+    };
 
-    function createHeavyBloodDrip() {
-        const dropCount = Math.floor(Math.random() * 10) + 25; 
-        for (let i = 0; i < dropCount; i++) {
+    const triggerTrxEffects = () => {
+        if (!trxAudioCtx) trxAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (trxAudioCtx.state === 'suspended') trxAudioCtx.resume();
+        if (trxAudioLocked) {
+            initTrxAudio();
+            trxAudioLocked = false;
+        }
+        if (trxAudioBuf) {
+            const src = trxAudioCtx.createBufferSource();
+            src.buffer = trxAudioBuf;
+            src.connect(trxAudioCtx.destination);
+            src.start(0);
+        } else {
+            new Audio(trxAudioUrl).play().catch(() => {});
+        }
+
+        const count = Math.floor(Math.random() * 10) + 25;
+        for (let i = 0; i < count; i++) {
             const drop = document.createElement('div');
-            drop.classList.add('blood-drop');
+            drop.className = 'blood-drop';
             drop.style.left = Math.random() * window.innerWidth + 'px';
-            const duration = (Math.random() * 0.6) + 0.6;
-            drop.style.animationDuration = duration + 's';
+            const dur = (Math.random() * 0.6) + 0.6;
+            drop.style.animationDuration = dur + 's';
             drop.style.height = (Math.random() * 25 + 20) + 'px';
             drop.style.width = (Math.random() * 2 + 1.5) + 'px';
             drop.style.animationDelay = (Math.random() * 0.3) + 's';
             document.body.appendChild(drop);
-            setTimeout(() => { drop.remove(); }, (duration + 0.3) * 1000);
+            setTimeout(() => drop.remove(), (dur + 0.3) * 1000);
         }
-    }
+    };
 
-    let activeInteraction = false;
+    let trxActiveTouch = false;
+    document.addEventListener('touchstart', () => { trxActiveTouch = true; triggerTrxEffects(); }, { passive: true });
+    document.addEventListener('mousedown', () => { if (!trxActiveTouch) triggerTrxEffects(); trxActiveTouch = false; });
 
-    function handleTrxTouchStart(e) {
-        activeInteraction = true; 
-        if (isAudioLocked) unlockAudioSystem();
-        playTrxSoundInstant();
-        createHeavyBloodDrip();
-    }
-
-    function handleTrxMouseDown(e) {
-        if (activeInteraction) { 
-            activeInteraction = false; 
-            return; 
-        }
-        if (isAudioLocked) unlockAudioSystem();
-        playTrxSoundInstant();
-        createHeavyBloodDrip();
-    }
-
-    document.addEventListener('touchstart', handleTrxTouchStart, { passive: true });
-    document.addEventListener('mousedown', handleTrxMouseDown);
-
-    function generateSeaBubbles() {
-        const bubbleCount = 45; 
-        for (let i = 0; i < bubbleCount; i++) {
+    window.addEventListener('DOMContentLoaded', () => {
+        for (let i = 0; i < 45; i++) {
             setTimeout(() => {
-                const bubble = document.createElement('div');
-                bubble.classList.add('bubble');
-                const size = Math.random() * 18 + 6;
-                bubble.style.width = size + 'px';
-                bubble.style.height = size + 'px';
-                bubble.style.left = Math.random() * window.innerWidth + 'px';
-                const duration = Math.random() * 6 + 4;
-                bubble.style.animationDuration = duration + 's';
-                bubble.style.animationDelay = Math.random() * 8 + 's';
-                document.body.appendChild(bubble);
-                bubble.addEventListener('animationend', () => {
-                    bubble.style.left = Math.random() * window.innerWidth + 'px';
-                    bubble.style.animationDelay = '0s';
+                const b = document.createElement('div');
+                b.className = 'bubble';
+                const sz = Math.random() * 18 + 6;
+                b.style.width = sz + 'px';
+                b.style.height = sz + 'px';
+                b.style.left = Math.random() * window.innerWidth + 'px';
+                b.style.animationDuration = (Math.random() * 6 + 4) + 's';
+                b.style.animationDelay = (Math.random() * 8) + 's';
+                document.body.appendChild(b);
+                b.addEventListener('animationend', () => {
+                    b.style.left = Math.random() * window.innerWidth + 'px';
+                    b.style.animationDelay = '0s';
                 });
             }, i * 200);
         }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        generateSeaBubbles();
-        loadTrxSoundData();
+        initTrxAudio();
     });
-
-    function navigateToSubPage(pageId) {
-        document.getElementById('main-menu-page').style.display = 'none';
-        const subPages = document.getElementsByClassName('sub-page');
-        for(let i=0; i<subPages.length; i++) { subPages[i].style.display = 'none'; }
-        document.getElementById(pageId).style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function returnToMainMenu() {
-        const subPages = document.getElementsByClassName('sub-page');
-        for(let i=0; i<subPages.length; i++) { subPages[i].style.display = 'none'; }
-        document.getElementById('main-menu-page').style.display = 'flex';
-    }
-
-    function toggleMenu() { 
-        document.getElementById('side-drawer').classList.toggle('open'); 
-    }
-
-    function closeMenuOnOverlay(e) {
-        if (e.target.id === 'side-drawer') {
-            toggleMenu();
-        }
-    }
-
-    function selectFromSideMenu(pageId) { 
-        toggleMenu(); 
-        navigateToSubPage(pageId); 
-    }
 </script>
 </body>
 </html>
