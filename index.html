@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFX</title>
+    <style>
+        :root {
+            --bg-dark: #050008; 
+            --royal-black: #08000d;
+            --card-bg: rgba(18, 2, 30, 0.85);
+            --border-royal: #8000ff; 
+            --royal-glow: rgba(128, 0, 255, 0.5);
+            --text-color: #e6ccff;
+            --main-purple: #8000ff;
+            --deep-purple: #1f0038;
+        }
+
+     
+            box-sizing: border-box; 
+            -webkit-user-select: none !important; 
+            -moz-user-select: none !important; 
+            -ms-user-select: none !important; 
+            user-select: none !important; 
+            -webkit-touch-callout: none !important; 
+            -webkit-user-drag: none !important;
+            user-drag: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-color); margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden;
+            position: relative;
+        }
+
+        
+        .top-black-bar {
+            width: 100%;
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--main-purple);
+            box-shadow: 0 4px 15px rgba(128, 0, 255, 0.3);
+            position: relative;
+            z-index: 50;
+        }
+
+        .blood-drop {
+            position: fixed; top: -25px; width: 3px; height: 30px;
+            background: linear-gradient(to bottom, #8000ff, #2a0052);
+            border-radius: 50%; pointer-events: none; z-index: 300000;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall { to { transform: translateY(105vh); opacity: 0; } }
+
+        .bubble {
+            position: fixed; bottom: -20px;
+            background: radial-gradient(circle at 30% 30%, rgba(128, 0, 255, 0.4), rgba(40, 0, 70, 0.8));
+            border: 1px solid rgba(128, 0, 255, 0.5); border-radius: 50%; pointer-events: none; z-index: 1;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+        }
+
+        .main-content-wrapper { position: relative; z-index: 10; }
+
+        
+        .top-left-menu-btn {
+            position: absolute;
+            top: 55px;
+            left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            z-index: 100;
+            padding: 8px;
+            background: transparent;
+            border: none !important;
+            box-shadow: none !important;
+            transition: transform 0.2s ease;
+        }
+
+        .top-left-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-bars-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-bars-icon span {
+            display: block;
+            width: 22px;
+            height: 3px;
+            background-color: var(--main-purple);
+            border-radius: 3px;
+            box-shadow: 0 0 8px var(--main-purple);
+        }
+
+        
+        @keyframes logoDance {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(-8deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(-8deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        header { padding: 30px 0 10px; text-align: center; }
+        
+         
+        .logo-img-container {
+            width: 130px; height: 130px; border-radius: 25px; 
+            border: 3px solid var(--main-purple); 
+            box-shadow: 0 0 25px var(--royal-glow); 
+            margin: 0 auto 20px; 
+            background: var(--deep-purple); 
+            position: relative; 
+            overflow: hidden;
+            animation: logoDance 3s ease-in-out infinite;
+        }
+        .logo-img { width: 100%; height: 100%; object-fit: cover; }
+
+        
+        .title-bar-no-border {
+            background: transparent;
+            border: none !important;
+            box-shadow: none !important;
+            text-align: center;
+            margin: 10px auto 25px;
+        }
+        .title-bar-no-border h1 { 
+            font-size: 32px; 
+            margin: 0; 
+            font-weight: 900; 
+            color: #ffffff; 
+            text-shadow: 0 0 18px var(--main-purple); 
+            letter-spacing: 3px; 
+        }
+
+        
+        @keyframes danceAnim {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-6px) rotate(-5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-6px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+   
+        .dancing-hack-img {
+            width: 85px;
+            height: 85px;
+            border-radius: 18px;
+            object-fit: cover;
+            margin: 0 auto 12px;
+            border: 2px solid var(--main-purple);
+            box-shadow: 0 0 15px var(--royal-glow);
+            animation: danceAnim 2.5s ease-in-out infinite;
+        }
+
+        .container { max-width: 850px; margin: 0 auto; padding: 10px 20px 60px; }
+        .main-menu-grid { display: flex; flex-direction: column; gap: 20px; }
+
+        .menu-box-trigger {
+            border-radius: 20px; padding: 25px; text-align: center; cursor: pointer; transition: 0.4s ease;
+            background: var(--card-bg); border: 2px solid var(--main-purple); box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+        .menu-box-trigger:hover { border-color: #a64dff; box-shadow: 0 0 25px rgba(128, 0, 255, 0.5); transform: translateY(-2px); }
+        .menu-box-trigger h2 { margin: 0 0 10px 0; font-size: 24px; font-weight: 900; color: #ffffff; text-shadow: 0 0 10px var(--main-purple); }
+        .menu-box-trigger p { margin: 0; font-size: 14px; color: var(--text-color); opacity: 0.8; }
+
+        .sub-page { display: none; background: transparent; border: none; padding: 10px; animation: fadeEffect 0.4s ease forwards; }
+        @keyframes fadeEffect { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+        
+        .section-title-purple { font-size: 26px; font-weight: 900; color: var(--main-purple); margin-bottom: 25px; text-align: center; text-shadow: 0 0 10px rgba(128, 0, 255, 0.5); }
+        
+        .cards-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); 
+            gap: 20px; 
+        }
+
+        
+        .hack-card {
+            background: var(--card-bg);
+            border: 2px solid var(--main-purple);
+            border-radius: 18px;
+            padding: 18px 15px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(128, 0, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hack-card:hover {
+            transform: translateY(-4px);
+            border-color: #a64dff;
+            box-shadow: 0 10px 25px rgba(128, 0, 255, 0.3);
+        }
+
+        .hack-card h3 { 
+            margin: 8px 0 12px; 
+            font-size: 20px; 
+            font-weight: 900; 
+            color: #ffffff; 
+            text-shadow: 0 0 10px var(--main-purple); 
+        }
+        
+        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+
+        .dl-link { 
+            display: block; text-decoration: none; background: var(--deep-purple); color: #ffffff; 
+            padding: 12px; border-radius: 50px; font-weight: 900; font-size: 13px; 
+            border: 1.5px solid var(--main-purple); transition: 0.3s; 
+        }
+        .dl-link:hover { background: var(--main-purple); color: #ffffff; box-shadow: 0 0 15px var(--main-purple); }
+
+        .back-btn { 
+            display: inline-block; margin-bottom: 25px; background: var(--deep-purple); color: var(--main-purple); 
+            padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 900; transition: 0.3s; 
+            border: 2px solid var(--main-purple);
+        }
+        .back-btn:hover { background: var(--main-purple); color: #fff; box-shadow: 0 0 15px var(--main-purple); }
+
+        .footer-discord-wrapper { text-align: center; margin: 40px 0 20px; position: relative; z-index: 20; }
+        .discord-footer-btn { 
+            display: inline-flex; align-items: center; justify-content: center; gap: 15px; 
+            background: var(--deep-purple); border: 2px solid var(--main-purple); color: #ffffff; 
+            padding: 16px 45px; border-radius: 50px; font-size: 17px; font-weight: 900; 
+            text-decoration: none; transition: 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.6); 
+        }
+        .discord-footer-btn:hover { background: var(--main-purple); color: #ffffff; box-shadow: 0 0 30px var(--main-purple); transform: translateY(-2px); }
+        .discord-icon-img { width: 26px; height: 26px; object-fit: contain; }
+
+       
+        .side-drawer-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(5px);
+            z-index: 200000;
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .side-drawer-overlay.open {
+            opacity: 1; visibility: visible;
+        }
+
+        .side-drawer-container { 
+            position: fixed; 
+            top: 0; 
+            left: -320px; 
+            width: 290px; 
+            max-width: 85%;
+            height: 100vh;
+            background: #06000a; 
+            border-right: 2px solid var(--main-purple);
+            padding: 25px 20px; 
+            box-shadow: 5px 0 30px rgba(128, 0, 255, 0.4);
+            z-index: 200001; 
+            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .side-drawer-overlay.open .side-drawer-container {
+            left: 0;
+        }
+
+        
+        .drawer-close-btn {
+            align-self: flex-end;
+            background: transparent;
+            border: 2px solid var(--main-purple);
+            color: var(--main-purple);
+            font-size: 22px;
+            font-weight: 900;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 10px var(--royal-glow);
+            margin-bottom: 10px;
+        }
+
+        .drawer-close-btn:hover {
+            background: var(--main-purple);
+            color: #ffffff;
+            box-shadow: 0 0 20px var(--main-purple);
+            transform: rotate(90deg);
+        }
+
+        
+        .drawer-item { 
+            background: var(--deep-purple); 
+            color: #ffffff; 
+            padding: 14px 18px; 
+            border-radius: 14px; 
+            text-align: center; 
+            font-size: 15px; 
+            font-weight: 900; 
+            cursor: pointer; 
+            text-decoration: none; 
+            transition: 0.3s; 
+            border: 2px solid var(--main-purple); 
+            box-shadow: 0 0 10px rgba(128, 0, 255, 0.2);
+        }
+
+        .drawer-item:hover, .drawer-item.active-home { 
+            background: var(--main-purple); 
+            color: #ffffff; 
+            box-shadow: 0 0 20px var(--main-purple); 
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="top-black-bar">RFX</div>
+
+<div class="main-content-wrapper">
+
+   
+    <div class="top-left-menu-btn" onclick="toggleMenu()">
+        <div class="menu-bars-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <header>
+        
+        <div class="logo-img-container">
+            <img src="https://github.com/Rxz60/MRX/raw/refs/heads/main/BF59CE60-63E5-40F6-9618-CFD816F8AAB9.png" class="logo-img">
+        </div>
+        
+        
+        <div class="title-bar-no-border">
+            <h1>RFX</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div id="main-menu-page" class="main-menu-grid">
+            <div class="menu-box-trigger" onclick="navigateToSubPage('page-ios')">
+                <h2>قائمة الآيفون (iOS)</h2>
+                <p>تحتوي على نسخ Delta TRX والمزيد من التحديثات...</p>
+            </div>
+            <div class="menu-box-trigger" onclick="navigateToSubPage('page-android')">
+                <h2>قائمة الأندرويد (Android)</h2>
+                <p>تحتوي على Delta, Arceus X, PunkX, Codex والمزيد...</p>
+            </div>
+            <div class="menu-box-trigger" onclick="navigateToSubPage('page-pc')">
+                <h2>قائمة الكمبيوتر (PC)</h2>
+                <p>تحتوي على أدوات وبرامج المحاكاة المخصصة للويندوز...</p>
+            </div>
+        </div>
+
+        <div id="page-ios" class="sub-page">
+            <button class="back-btn" onclick="returnToMainMenu()">← رجوع للرئيسية</button>
+            <div class="section-title-purple">نسخ الآيفون المتوفرة</div>
+            <div class="cards-grid">
+                <div class="hack-card">
+                    <img src="https://raw.githubusercontent.com/hatm12345cc-source/VN7/refs/heads/main/IMG_1929.png" class="dancing-hack-img">
+                    <h3>Delta iOS</h3>
+                    <div class="btn-group">
+                        <a href="https://nekoo.eu.org/VJC2Wh" class="dl-link">Delta TRX</a>
+                        <a href="https://nekoo.eu.org/mnzdiQ" class="dl-link">Delta VN TRX</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-android" class="sub-page">
+            <button class="back-btn" onclick="returnToMainMenu()">← رجوع للرئيسية</button>
+            <div class="section-title-purple">نسخ الأندرويد المتوفرة</div>
+            <div class="cards-grid">
+                <div class="hack-card">
+                    <img src="https://raw.githubusercontent.com/hatm12345cc-source/VN7/refs/heads/main/IMG_1929.png" class="dancing-hack-img">
+                    <h3>Delta Android</h3>
+                    <div class="btn-group">
+                        <a href="https://www.mediafire.com/file/a2z09nicz0j4efq/Delta-2.724.735.apk/file" class="dl-link">Delta العادي</a>
+                        <a href="https://www.mediafire.com/file/5pvz0fjuaudojmd/Delta+VN+New.apk/file" class="dl-link">Delta VN (فيتنام)</a>
+                    </div>
+                </div>
+                <div class="hack-card">
+                    <img src="https://raw.githubusercontent.com/Rxz60/Rxz/refs/heads/main/IMG_2577.jpeg" class="dancing-hack-img">
+                    <h3>Arceus X</h3>
+                    <div class="btn-group">
+                        <a href="https://android.spdmteam.com/" class="dl-link">Arceus Neo</a>
+                        <a href="https://vng.spdmteam.com/" class="dl-link">Arceus VN</a>
+                    </div>
+                </div>
+                <div class="hack-card">
+                    <img src="https://raw.githubusercontent.com/Rxz60/Rxz/refs/heads/main/IMG_2609.jpeg" class="dancing-hack-img">
+                    <h3>PunkX Android</h3>
+                    <div class="btn-group">
+                        <a href="https://www.mediafire.com/file/4cz0juuzjfyqqm4/PunkX_64Bits.apk/file" class="dl-link">Original</a>
+                        <a href="https://www.mediafire.com/file/tafzvqylpjzp4go/PunkX_VNG_64Bits.apk/file" class="dl-link">VNG Version</a>
+                    </div>
+                </div>
+                <div class="hack-card">
+                    <img src="https://raw.githubusercontent.com/Rxz60/Rxz/refs/heads/main/IMG_2580.jpeg" class="dancing-hack-img">
+                    <h3>Codex</h3>
+                    <div class="btn-group">
+                        <a href="https://www.mediafire.com/file/sqzqlm4b8re0rr5/Codex+v2.714.apk/file" class="dl-link">Global APK</a>
+                        <a href="https://www.mediafire.com/file/5p08n8qhtsv4x3s/Codex+VNG+V2.715+No+Key.apk/file" class="dl-link">Codex VN (No Key)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-pc" class="sub-page">
+            <button class="back-btn" onclick="returnToMainMenu()">← رجوع للرئيسية</button>
+            <div class="section-title-purple">أدوات الكمبيوتر (PC)</div>
+            <div class="cards-grid">
+                <div class="hack-card">
+                    <img src="https://raw.githubusercontent.com/Rxz60/Rxz/heads/main/IMG_2612.jpeg" class="dancing-hack-img">
+                    <h3>Velocity PC</h3>
+                    <div class="btn-group"><a href="https://gofile.io/d/biQGwp" class="dl-link">Download Windows</a></div>
+                </div>
+                <div class="hack-card">
+                    <img src="https://raw.githubusercontent.com/Rxz60/Rxz/heads/main/IMG_2611.jpeg" class="dancing-hack-img">
+                    <h3>VegaX PC</h3>
+                    <div class="btn-group"><a href="https://github.com/1f0yt/community/releases/download/Vegax/Vega.X.apk" class="dl-link">تنزيل للويندوز</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-discord-wrapper">
+            <a href="https://discord.gg/rfx" target="_blank" class="discord-footer-btn">
+                <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-icon-img">
+                <span>الانضمام إلى ديسكورد RFX الرسمي</span>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="side-drawer" class="side-drawer-overlay" onclick="closeMenuOnOverlay(event)">
+    <div class="side-drawer-container">
+        
+        <button class="drawer-close-btn" onclick="toggleMenu()">✕</button>
+        
+        <div class="drawer-item active-home" onclick="returnToMainMenu(); toggleMenu();">الصفحة الرئيسية</div>
+        <div class="drawer-item" onclick="selectFromSideMenu('page-ios')">قائمة الايفون (iOS)</div>
+        <div class="drawer-item" onclick="selectFromSideMenu('page-android')">قائمة الاندرويد (Android)</div>
+        <div class="drawer-item" onclick="selectFromSideMenu('page-pc')">قائمة البي سي (PC)</div>
+        <a href="https://discord.gg/rfx" target="_blank" class="drawer-item">ديسكورد RFX</a>
+    </div>
+</div>
+
+<script>
+   
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('dragstart', event => event.preventDefault());
+    document.addEventListener('drop', event => event.preventDefault());
+
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+
+  
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioContext;
+    let audioBuffer = null;
+    let isAudioLocked = true;
+
+    const audioUrl = 'https://github.com/Rxz60/MRX/raw/refs/heads/main/ScreenRecording_%D9%A0%D9%A7-%D9%A2%D9%A0-%D9%A2%D9%A0%D9%A2%D9%A6-%D9%A2%D9%A1-%D9%A1%D9%A7-%D9%A1%D9%A8_1.m4a';
+
+    function loadTrxSoundData() {
+        if (!audioContext) audioContext = new AudioCtx();
+        if (audioBuffer) return; 
+
+        fetch(audioUrl)
+            .then(response => response.arrayBuffer())
+            .then(data => audioContext.decodeAudioData(data))
+            .then(buffer => { audioBuffer = buffer; })
+            .catch(e => {});
+    }
+
+    function unlockAudioSystem() {
+        if (!audioContext) audioContext = new AudioCtx();
+        if (audioContext.state === 'suspended') audioContext.resume();
+        loadTrxSoundData();
+        isAudioLocked = false;
+        window.removeEventListener('click', unlockAudioSystem);
+        window.removeEventListener('touchstart', unlockAudioSystem);
+    }
+
+    function playTrxSoundInstant() {
+        if (audioContext && audioContext.state === 'suspended') audioContext.resume();
+        if (audioBuffer) {
+            const source = audioContext.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(audioContext.destination);
+            source.start(0); 
+        } else {
+            const fallbackAudio = new Audio(audioUrl);
+            fallbackAudio.play().catch(e => {});
+        }
+    }
+
+    function createHeavyBloodDrip() {
+        const dropCount = Math.floor(Math.random() * 10) + 25; 
+        for (let i = 0; i < dropCount; i++) {
+            const drop = document.createElement('div');
+            drop.classList.add('blood-drop');
+            drop.style.left = Math.random() * window.innerWidth + 'px';
+            const duration = (Math.random() * 0.6) + 0.6;
+            drop.style.animationDuration = duration + 's';
+            drop.style.height = (Math.random() * 25 + 20) + 'px';
+            drop.style.width = (Math.random() * 2 + 1.5) + 'px';
+            drop.style.animationDelay = (Math.random() * 0.3) + 's';
+            document.body.appendChild(drop);
+            setTimeout(() => { drop.remove(); }, (duration + 0.3) * 1000);
+        }
+    }
+
+    let activeInteraction = false;
+
+    function handleTrxTouchStart(e) {
+        activeInteraction = true; 
+        if (isAudioLocked) unlockAudioSystem();
+        playTrxSoundInstant();
+        createHeavyBloodDrip();
+    }
+
+    function handleTrxMouseDown(e) {
+        if (activeInteraction) { 
+            activeInteraction = false; 
+            return; 
+        }
+        if (isAudioLocked) unlockAudioSystem();
+        playTrxSoundInstant();
+        createHeavyBloodDrip();
+    }
+
+    document.addEventListener('touchstart', handleTrxTouchStart, { passive: true });
+    document.addEventListener('mousedown', handleTrxMouseDown);
+
+    function generateSeaBubbles() {
+        const bubbleCount = 45; 
+        for (let i = 0; i < bubbleCount; i++) {
+            setTimeout(() => {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                const size = Math.random() * 18 + 6;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * window.innerWidth + 'px';
+                const duration = Math.random() * 6 + 4;
+                bubble.style.animationDuration = duration + 's';
+                bubble.style.animationDelay = Math.random() * 8 + 's';
+                document.body.appendChild(bubble);
+                bubble.addEventListener('animationend', () => {
+                    bubble.style.left = Math.random() * window.innerWidth + 'px';
+                    bubble.style.animationDelay = '0s';
+                });
+            }, i * 200);
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        generateSeaBubbles();
+        loadTrxSoundData();
+    });
+
+    function navigateToSubPage(pageId) {
+        document.getElementById('main-menu-page').style.display = 'none';
+        const subPages = document.getElementsByClassName('sub-page');
+        for(let i=0; i<subPages.length; i++) { subPages[i].style.display = 'none'; }
+        document.getElementById(pageId).style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function returnToMainMenu() {
+        const subPages = document.getElementsByClassName('sub-page');
+        for(let i=0; i<subPages.length; i++) { subPages[i].style.display = 'none'; }
+        document.getElementById('main-menu-page').style.display = 'flex';
+    }
+
+    function toggleMenu() { 
+        document.getElementById('side-drawer').classList.toggle('open'); 
+    }
+
+    function closeMenuOnOverlay(e) {
+        if (e.target.id === 'side-drawer') {
+            toggleMenu();
+        }
+    }
+
+    function selectFromSideMenu(pageId) { 
+        toggleMenu(); 
+        navigateToSubPage(pageId); 
+    }
+</script>
+</body>
+</html>
