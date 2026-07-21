@@ -219,15 +219,33 @@
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
 
         .dl-link { 
-            display: block; text-decoration: none; background: var(--deep-purple); color: #ffffff; 
-            padding: 12px; border-radius: 50px; font-weight: 900; font-size: 13px; 
-            border: 1.5px solid var(--main-purple); transition: 0.3s; 
+            display: block; 
+            text-decoration: none; 
+            background: var(--deep-purple); 
+            color: #ffffff; 
+            padding: 12px 16px; 
+            border-radius: 8px; 
+            font-weight: 900; 
+            font-size: 13px; 
+            border: 1.5px solid var(--main-purple); 
+            transition: 0.3s; 
         }
-        .dl-link:hover { background: var(--main-purple); color: #ffffff; box-shadow: 0 0 15px var(--main-purple); }
+        .dl-link:hover { 
+            background: var(--main-purple); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px var(--main-purple); 
+        }
 
         .back-btn { 
-            display: inline-block; margin-bottom: 25px; background: var(--deep-purple); color: var(--main-purple); 
-            padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: 900; transition: 0.3s; 
+            display: inline-block; 
+            margin-bottom: 25px; 
+            background: var(--deep-purple); 
+            color: var(--main-purple); 
+            padding: 10px 25px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: 900; 
+            transition: 0.3s; 
             border: 2px solid var(--main-purple);
         }
         .back-btn:hover { background: var(--main-purple); color: #fff; box-shadow: 0 0 15px var(--main-purple); }
@@ -236,7 +254,7 @@
         .discord-footer-btn { 
             display: inline-flex; align-items: center; justify-content: center; gap: 15px; 
             background: var(--deep-purple); border: 2px solid var(--main-purple); color: #ffffff; 
-            padding: 16px 45px; border-radius: 50px; font-size: 17px; font-weight: 900; 
+            padding: 16px 35px; border-radius: 12px; font-size: 17px; font-weight: 900; 
             text-decoration: none; transition: 0.3s; box-shadow: 0 10px 25px rgba(0,0,0,0.6); 
         }
         .discord-footer-btn:hover { background: var(--main-purple); color: #ffffff; box-shadow: 0 0 30px var(--main-purple); transform: translateY(-2px); }
@@ -286,7 +304,7 @@
             font-weight: 900;
             width: 38px;
             height: 38px;
-            border-radius: 50%;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -307,7 +325,7 @@
             background: var(--deep-purple); 
             color: #ffffff; 
             padding: 14px 18px; 
-            border-radius: 14px; 
+            border-radius: 10px; 
             text-align: center; 
             font-size: 15px; 
             font-weight: 900; 
@@ -353,105 +371,116 @@
         
         <div id="main-menu-page" class="main-menu-grid">
             <div class="menu-box-trigger" onclick="document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-ios').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">
-                <h2>قائمة الآيفون (iOS)</h2>
-                <p>تحتوي على نسخ Delta TRX والمزيد من التحديثات...</p>
+                <h2>قائمة الايفون (iOS)</h2>
+                <p>تحتوي على نسخ Delta والمزيد من التحديثات...</p>
             </div>
             <div class="menu-box-trigger" onclick="document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-android').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">
-                <h2>قائمة الأندرويد (Android)</h2>
+                <h2>قائمة الاندرويد (Android)</h2>
                 <p>تحتوي على Delta, Arceus X, PunkX, Codex والمزيد...</p>
             </div>
             <div class="menu-box-trigger" onclick="document.getElementById('main-menu-page').style.display='none'; Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('page-pc').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});">
-                <h2>قائمة الكمبيوتر (PC)</h2>
+                <h2>قائمة البي سي (PC)</h2>
                 <p>تحتوي على أدوات وبرامج المحاكاة المخصصة للويندوز...</p>
             </div>
         </div>
 
         <div id="page-ios" class="sub-page">
-            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع للرئيسية</button>
-            <div class="section-title-purple">نسخ الآيفون المتوفرة</div>
+            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع</button>
+            <div class="section-title-purple">قائمة الايفون (iOS)</div>
             <div class="cards-grid">
                 <div class="hack-card">
                     <img src="https://raw.githubusercontent.com/hatm12345cc-source/VN7/refs/heads/main/IMG_1929.png" class="dancing-hack-img">
-                    <h3>Delta </h3>
+                    <h3>Delta</h3>
                     <div class="btn-group">
-                        <a href="https://nekoo.eu.org/VJC2Wh" class="dl-link">Delta RFX lnstall </a>
-                        <a href="https://nekoo.eu.org/mnzdiQ" class="dl-link">Delta VN RFX lnstall </a>
+                        <a href="https://nekoo.eu.org/VJC2Wh" class="dl-link">Delta Install</a>
+                        <a href="https://nekoo.eu.org/mnzdiQ" class="dl-link">Delta VN Install</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="page-android" class="sub-page">
-            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع للرئيسية</button>
-            <div class="section-title-purple">نسخ الأندرويد المتوفرة</div>
+            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع</button>
+            <div class="section-title-purple">قائمة الاندرويد (Android)</div>
             <div class="cards-grid">
                 <div class="hack-card">
                     <img src="https://raw.githubusercontent.com/hatm12345cc-source/VN7/refs/heads/main/IMG_1929.png" class="dancing-hack-img">
-                    <h3>Delta </h3>
+                    <h3>Delta</h3>
                     <div class="btn-group">
-                        <a href="https://www.mediafire.com/file/a2z09nicz0j4efq/Delta-2.724.735.apk/file" class="dl-link">Delta lnstall </a>
-                        <a href="https://www.mediafire.com/file/5pvz0fjuaudojmd/Delta+VN+New.apk/file" class="dl-link">Delta VN lnstall </a>
+                        <a href="https://www.mediafire.com/file/nsyedn6qmsv4pqi/Delta-2.729.840.apk/file" class="dl-link">Delta Install</a>
+                        <a href="https://www.mediafire.com/file/5pvz0fjuaudojmd/Delta+VN+New.apk/file" class="dl-link">Delta VN Install</a>
                     </div>
                 </div>
                 <div class="hack-card">
                     <img src="https://raw.githubusercontent.com/Rxz60/Rxz/refs/heads/main/IMG_2577.jpeg" class="dancing-hack-img">
                     <h3>Arceus X</h3>
                     <div class="btn-group">
-                        <a href="https://www.mediafire.com/file/dlypi7n7b8azy74/Roblox.Arceus.X.NEO.2.2.7.apk.download/file" class="dl-link">Arceus Neo lnstall </a>
-                        <a href="https://vng.spdmteam.com/" class="dl-link">Arceus VN lnstall </a>
+                        <a href="https://www.mediafire.com/file/dlypi7n7b8azy74/Roblox.Arceus.X.NEO.2.2.7.apk.download/file" class="dl-link">Arceus Neo Install</a>
+                        <a href="https://vng.spdmteam.com/" class="dl-link">Arceus VN Install</a>
                     </div>
                 </div>
                 <div class="hack-card">
                     <img src="https://raw.githubusercontent.com/Rxz60/Rxz/refs/heads/main/IMG_2609.jpeg" class="dancing-hack-img">
-                    <h3>PunkX </h3>
+                    <h3>PunkX</h3>
                     <div class="btn-group">
-                        <a href="https://www.mediafire.com/file/4cz0juuzjfyqqm4/PunkX_64Bits.apk/file" class="dl-link">PunkX lnstall </a>
-                        <a href="https://www.mediafire.com/file/tafzvqylpjzp4go/PunkX_VNG_64Bits.apk/file" class="dl-link"> PunkX VNG lnstall</a>
+                        <a href="https://www.mediafire.com/file/4cz0juuzjfyqqm4/PunkX_64Bits.apk/file" class="dl-link">PunkX Original Install</a>
+                        <a href="https://www.mediafire.com/file/tafzvqylpjzp4go/PunkX_VNG_64Bits.apk/file" class="dl-link">PunkX VNG Install</a>
                     </div>
                 </div>
                 <div class="hack-card">
                     <img src="https://raw.githubusercontent.com/Rxz60/Rxz/refs/heads/main/IMG_2580.jpeg" class="dancing-hack-img">
                     <h3>Codex</h3>
                     <div class="btn-group">
-                        <a href="https://www.mediafire.com/file/vk46d8d9qwiz4ik/Codex+v2.729.840.apk/file" class="dl-link">Codex lnstall </a>
-                        <a href="https://www.mediafire.com/file/5p08n8qhtsv4x3s/Codex+VNG+V2.715+No+Key.apk/file" class="dl-link">Codex VN (No Key) lnstall </a>
+                        <a href="https://www.mediafire.com/file/9qz50mqeizkgkww/Codex+v2.729.840.apk/file" class="dl-link">Codex Global Install</a>
+                        <a href="https://www.mediafire.com/file/5p08n8qhtsv4x3s/Codex+VNG+V2.715+No+Key.apk/file" class="dl-link">Codex VN Install</a>
+                    </div>
+                </div>
+                <div class="hack-card">
+                    <img src="https://github.com/Rxz60/TRX5/raw/refs/heads/main/4865B4C0-8AD9-44E7-AEF1-93DFA9FFE555.png" class="dancing-hack-img">
+                    <h3>VegaX</h3>
+                    <div class="btn-group">
+                        <a href="https://github.com/1f0yt/community/releases/download/Vegax/Vega.X.apk" class="dl-link">VegaX Install</a>
+                    </div>
+                </div>
+                <div class="hack-card">
+                    <img src="https://github.com/Rxz60/RFX/raw/refs/heads/main/A590D67D-235D-4C31-8606-59127F58FF03.png" class="dancing-hack-img">
+                    <h3>Trigon</h3>
+                    <div class="btn-group">
+                        <a href="https://www.mediafire.com/file/1p5mhe2y2hh97z1/2.726.1142_trigon.apk/file" class="dl-link">Trigon Install</a>
                     </div>
                 </div>
             </div>
-            
-       <div class="hack-card">
-                    <img src="https://github.com/Rxz60/RFX/raw/refs/heads/main/A590D67D-235D-4C31-8606-59127F58FF03.png" class="dancing-hack-img">
-                    <h3>Trigon </h3>
-                    <div class="btn-group">
-                    <a href="https://www.mediafire.com/file/1p5mhe2y2hh97z1/2.726.1142_trigon.apk/file" class="dl-link">Trigon lnstall </a>
-           </div>
-       </div>
         </div>
 
         <div id="page-pc" class="sub-page">
-            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع للرئيسية</button>
-            <div class="section-title-purple">هاكات الكمبيوتر (PC)</div>
+            <button class="back-btn" onclick="Array.from(document.getElementsByClassName('sub-page')).forEach(p=>p.style.display='none'); document.getElementById('main-menu-page').style.display='flex';">← رجوع</button>
+            <div class="section-title-purple">قائمة البي سي (PC)</div>
             <div class="cards-grid">
                 <div class="hack-card">
                     <img src="https://raw.githubusercontent.com/Rxz60/Rxz/heads/main/IMG_2612.jpeg" class="dancing-hack-img">
-                    <h3>Velocity </h3>
-                    <div class="btn-group"><a href="https://gofile.io/d/biQGwp" class="dl-link">Velocity lnstall</a></div>
+                    <h3>Velocity</h3>
+                    <div class="btn-group">
+                        <a href="https://gofile.io/d/biQGwp" class="dl-link">Velocity Install</a>
+                    </div>
                 </div>
                 <div class="hack-card">
-                    <img src="https://raw.githubusercontent.com/Rxz60/Rxz/heads/main/IMG_2611.jpeg" class="dancing-hack-img">
-                    <h3>VegaX  لايعمل </h3>
-                    <div class="btn-group"><a href="https://github.com/1f0yt/community/releases/download/Vegax/Vega.X.apk" class="dl-link">Vega lnstall </a></div>
+                    <img src="https://github.com/Rxz60/RFX/raw/refs/heads/main/A590D67D-235D-4C31-8606-59127F58FF03.png" class="dancing-hack-img">
+                    <h3>Trigon</h3>
+                    <div class="btn-group">
+                        <a href="https://www.mediafire.com/file/jwmwp9xhriyqkql/Trigon_Evo_0.2.6.exe/file" class="dl-link">Trigon PC Install</a>
+                    </div>
+                </div>
+                <div class="hack-card">
+                    <img src="https://github.com/Rxz60/RFX/raw/refs/heads/main/8EDAC7FF-974A-4351-8F15-8C2592B06CF4.png" class="dancing-hack-img">
+                    <h3>Xeno</h3>
+                    <div class="btn-group">
+                        <a href="https://www.mediafire.com/file/e2kjxf028x107uk/Xeno-v1.3.55.exe/file" class="dl-link">Xeno Install</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="hack-card">
-                    <img src="https://raw.githubusercontent.com/Rxz60/Rxz/heads/main/IMG_2611.jpeg" class="dancing-hack-img">
-                    <h3>VegaX  لايعمل </h3>
-                    <div class="btn-group"><a href="https://github.com/1f0yt/community/releases/download/Vegax/Vega.X.apk" class="dl-link">Vega lnstall </a></div>
-                </div>
-            </div>
-        </div>
-      <div class="footer-discord-wrapper">
+
+        <div class="footer-discord-wrapper">
             <a href="https://discord.gg/rfx" target="_blank" class="discord-footer-btn">
                 <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png" class="discord-icon-img">
                 <span>الانضمام إلى ديسكورد RFX الرسمي</span>
