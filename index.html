@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRX ☣️ · DESTROYER</title>
+    <title>☣️ TRX HUB ☣️ · </title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -69,7 +69,7 @@
     <div class="stat">الرسائل المرسلة:</div>
     <div id="cnt">0</div>
     <textarea id="log" readonly placeholder="..."></textarea>
-    <div class="badge">● TRX ☣️ HUB ●</div>
+    <div class="badge">● ☣️ TRX ☣️ HUB ☣️ ●</div>
 </div>
 
 <script>
@@ -96,7 +96,7 @@ async function sendMsg(wh, text) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 content: text,
-                username: 'TRX ☣️',
+                username: ' ☣️ TRX HUB ☣️',
                 avatar_url: AVATAR_URL   
             })
         });
@@ -112,7 +112,7 @@ async function renameAndAvatarBot(wh) {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: 'TRX ☣️',
+                name: '☣️ TRX HUB ☣️',
                 avatar: AVATAR_URL   
             })
         });
